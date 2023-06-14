@@ -1,0 +1,25 @@
+#temporary directories, py-caches, logs
+.vscode/
+.DS_Store/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+#mines
+*.png
+*.jpg
+*.jpeg
+ko.txt
+GBR.ttf
+chinook.sql
+
+#credentials
+key
+gcert.json
+gsak.json
+token.json
+
+#rs
+rs/target/
+Cargo.lock

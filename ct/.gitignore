@@ -1,0 +1,19 @@
+#temporary directories, py-caches, logs
+.vscode/
+.DS_Store/
+__pycache__/
+.ipynb_checkpoints/
+cache_dir/
+outputs/
+runs/
+input/
+*.pyc
+*.pyo
+*.log
+*.csv
+*.json
+*.png
+*.jpg
+*.jpeg
+*.txt
+words

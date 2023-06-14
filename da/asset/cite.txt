@@ -1,0 +1,18 @@
+Ben S. Bernanke, Bernanke's Lecture Serie, https://www.youtube.com/watch?v=E3fFg8XIS0k, 2012.
+U.S. Bureau of Labor Statistics, Producer Price Index by Commodity: All Commodities [PPIACO], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/PPIACO, December 11, 2022.
+U.S. Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers: All Items in U.S. City Average [CPIAUCSL], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/CPIAUCSL, December 11, 2022.
+U.S. Bureau of Economic Analysis, Personal Consumption Expenditures Excluding Food and Energy (Chain-Type Price Index) [PCEPILFE], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/PCEPILFE, December 11, 2022.
+U.S. Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers: All Items in U.S. City Average [CPIAUCSL], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/CPIAUCSL, December 11, 2022.
+U.S. Employment and Training Administration, Initial Claims [ICSA], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/ICSA, December 11, 2022.
+Federal Reserve Bank of St. Louis, 10-Year Treasury Constant Maturity Minus 3-Month Treasury Constant Maturity [T10Y3M], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/T10Y3M, December 11, 2022.
+Board of Governors of the Federal Reserve System (US), Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed [DFII10], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/DFII10, December 11, 2022.
+Board of Governors of the Federal Reserve System (US), Federal Funds Effective Rate [DFF], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/DFF, December 11, 2022.
+S&P Dow Jones Indices LLC, S&P/Case-Shiller U.S. National Home Price Index [CSUSHPISA], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/CSUSHPISA, December 11, 2022.
+Ice Data Indices, LLC, ICE BofA US High Yield Index Option-Adjusted Spread [BAMLH0A0HYM2], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/BAMLH0A0HYM2, December 11, 2022.
+Ministry of Finance, 10-year Inflation-Indexed Bonds, https://www.mof.go.jp/english/policy/jgbs/topics/bond/10year_inflation/index.htm, December 11, 2022.
+Eric C. Engstrom et al., The Near-Term Forward Yield Spread as a Leading Indicator: A Less Distorted Mirror, 2018.
+H. Clark et al., How Stable Is China’s Growth? Shedding Light on Sparse Data, 2020.
+Kevin L. Kliessen, Measuring Financial Market Stress, 2010.
+SAS를 이용한 현대통계학 2e, 최병선, 2003.
+통계학 3e, 류근관, 2016.
+Yahoo! API T&C, https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html
