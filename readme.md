@@ -9,7 +9,7 @@
 * da
     * API로 지정한 데이터를 받고, 결합, 업데이트, 보간 등 전처리하는 스크립트
     * 시계열 데이터 확인을 위한 래퍼와 Stremlit 대시보드 스크립트
-    * Random Forest Regressor로 ICSA, Coporate Yield Spread로 전월 NFP 계산
+    * Random Forest Regressor로 ICSA, Corporate Yield Spread로 전월 NFP 계산
 
 * bl
     * 붙여넣기한 데이터를 특정 형태의 tabular data로 구글 스프레드시트에 업데이트하는 스크립트
