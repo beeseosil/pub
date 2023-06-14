@@ -15,11 +15,13 @@ class wks:
         self.wks=self.sht.worksheet(wksname)
         print(f"got:: sheet {shtname}:: {wksname}")
         return None
+    def get(self):
+        return self.wks.get_all_values()
     def set(self,data):
         return self.wks.update([data.columns.tolist()]+data.values.tolist())
 
 class hx:
-    def __init__(self,hxfile="history.json"):
+    def __init__(self,hxfile="c:/code/blhx.json"):
         self.hxfile=hxfile
         try:
             self.hx=json.load(open(hxfile,"r",encoding="utf-8"))
@@ -28,16 +30,16 @@ class hx:
         except Exception as err:
             self.hx=[]
             self.rowcursor=None
-            print(f"failed to opening history.json: {err}")
+            print(f"failed to open:: {err}")
         return None
     def show(self):
         return pd.DataFrame(self.hx)
     def save(self):
         json.dump(self.hx,open(self.hxfile,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
         return None
-    
-os.chdir("c:/code/misc/bl")
-key="c:/code/gcapikey_bl.json"
+
+key="c:/code/blkey.json"
+datafile="c:/code/bl.csv"
 cols=["BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT"]
 BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS'}
 
@@ -45,13 +47,23 @@ bl=wks(key)
 bl.open("ap_daily","bl")
 history=hx()
 
+isdataexist=False
 while True:
-    prev=pd.read_csv("bl.csv",encoding="utf-8")
+    if not isdataexist:
+        if os.path.exists(datafile):
+            print("found bl.csv")
+            prev=pd.read_csv(datafile,encoding="utf-8")
+        else:
+            print("failed to locate bl.csv, creating one..")
+            prev=pd.DataFrame(bl.get()).drop(0)
+            prev.columns=cols
+            prev.to_csv(datafile,index=False,encoding="utf-8")
 
     answer=input("read clipboard:: ")
+
     if not answer:
-        print(f"resetting.. {prev.shape}")
-        bl.wks.resize(10,10)
+        print(f"resetting..")
+        bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
     if answer in ("exit","quit"):
@@ -69,7 +81,7 @@ while True:
         this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
 
         ima=pd.concat([prev,this]).sort_values("DATE",ascending=False).drop_duplicates(["DATE","INPUT","OUTPUT"],keep="first",ignore_index=True)
-        ima.to_csv("bl.csv",index=None,encoding="utf-8")
+        ima.to_csv(datafile,index=None,encoding="utf-8")
 
         response=bl.set(ima)
     
@@ -79,4 +91,5 @@ while True:
     else:
         history.hx=[response]
     history.save()
+    isdataexist=True
     continue
