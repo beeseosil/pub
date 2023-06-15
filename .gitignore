@@ -1,5 +1,4 @@
 #temps
-bl/history.json
 .vscode/
 .DS_Store/
 __pycache__/
@@ -15,13 +14,10 @@ __pycache__/
 *.db
 *.ttf
 *.csv
-ko.txt
-chinook.sql
 
 #credentials
 key
 id
 id.json
 gcert.json
-gsak.json
 token.json

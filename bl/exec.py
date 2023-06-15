@@ -47,49 +47,61 @@ bl=wks(key)
 bl.open("ap_daily","bl")
 history=hx()
 
-isdataexist=False
 while True:
-    if not isdataexist:
-        if os.path.exists(datafile):
-            print("found bl.csv")
-            prev=pd.read_csv(datafile,encoding="utf-8")
-        else:
-            print("failed to locate bl.csv, creating one..")
-            prev=pd.DataFrame(bl.get()).drop(0)
-            prev.columns=cols
-            prev.to_csv(datafile,index=False,encoding="utf-8")
+    if os.path.exists(datafile):
+        print("found bl.csv")
+        prev=pd.read_csv(datafile,encoding="utf-8")
+    else:
+        print("failed to locate bl.csv, creating one..")
+        prev=pd.DataFrame(bl.get()).drop(0)
+        prev.columns=cols
+        prev.to_csv(datafile,index=False,encoding="utf-8")
 
     answer=input("read clipboard:: ")
 
     if not answer:
+        break
+
+    if answer in ("reset","set"):
         print(f"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
-        continue
-    if answer in ("exit","quit"):
-        break
-    if answer=="y":
-        try:
-            this=pd.read_clipboard(header=None,usecols=[0,1,2,3,4,6])
-        except Exception as err:
-            print("failed::",err)
-            continue
-
-        this=this.set_axis(cols,axis=1).dropna()
-        this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
-        this.BATCH=this.BATCH.apply(lambda q:BATCH_label[q])
-        this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
-
-        ima=pd.concat([prev,this]).sort_values("DATE",ascending=False).drop_duplicates(["DATE","INPUT","OUTPUT"],keep="first",ignore_index=True)
-        ima.to_csv(datafile,index=None,encoding="utf-8")
-
-        response=bl.set(ima)
     
+    if answer=="y":
+        data=[]
+        while answer=="y":
+            try:
+                this=pd.read_clipboard(header=None,usecols=[0,1,2,3,4,6])
+            except Exception as err:
+                print("failed::",err)
+                continue
+            else:
+                data.append(this)
+                answer=input("continue:: ")
+                if answer=="y":
+                    continue
+                break
+    
+    this=pd.concat(data)
+    print(f"got {this.shape[0]} rows")
+
+    print("processing..")
+    this=this.set_axis(cols,axis=1)
+    this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
+    this.BATCH=this.BATCH.apply(lambda q:BATCH_label[q])
+    this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
+
+    ima=pd.concat([prev,this]).sort_values("DATE",ascending=False)
+    ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True)
+    ima.to_csv(datafile,index=None,encoding="utf-8")
+
+    print("writing..")
+    response=bl.set(ima)
     response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
     if not history.rowcursor is None:
         history.hx.append(response)
     else:
         history.hx=[response]
     history.save()
-    isdataexist=True
+
     continue
