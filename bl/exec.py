@@ -1,10 +1,19 @@
 import os
 import json
 import datetime
+import numpy as np
 import pandas as pd
 import gspread as gs
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
+from imblearn.over_sampling import RandomOverSampler
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import RandomizedSearchCV
+from xgboost import XGBClassifier
+
 datetimeFormat="%y%m%d%H%M%S"
+bitgen=np.random.default_rng(2330)
 
 class wks:
     def __init__(self,key):
@@ -19,7 +28,6 @@ class wks:
         return self.wks.get_all_values()
     def set(self,data):
         return self.wks.update([data.columns.tolist()]+data.values.tolist())
-
 class hx:
     def __init__(self,hxfile="c:/code/blhx.json"):
         self.hxfile=hxfile
@@ -38,9 +46,28 @@ class hx:
         json.dump(self.hx,open(self.hxfile,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
         return None
 
+def _truncate(data,n=3):
+    '''Get words from series object for n-th'''
+    return [q[:n] for q in data]
+
+def _tokenize(data):
+    _x=data[["INPUT","OUTPUT"]]
+    _y=data.RESULT
+
+    lb=LabelEncoder()
+    tfidf=TfidfVectorizer()
+    _y=lb.fit_transform(data.RESULT)
+    _x=data[["INPUT","OUTPUT"]].apply(lambda q:q.str.findall(r"[\w]+"))
+    _x.RESULT=_x.RESULT.apply(_truncate)
+    _x=tfidf.fit_transform(_x)
+    
+    print(lb.classes_)
+
+x,x_,y,y_=train_test_split(_x,_y,random_state=bitgen)
+
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
-cols=["BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT"]
+cols=("BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT")
 BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS'}
 
 bl=wks(key)
@@ -60,13 +87,12 @@ while True:
     answer=input("read clipboard:: ")
 
     if not answer:
+        print("="*10,"did nothing")
         break
-
     if answer in ("reset","set"):
         print(f"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
-    
     if answer=="y":
         data=[]
         while answer=="y":
