@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import RandomizedSearchCV
-from sklearn.metrics import classification_report
 from xgboost import XGBClassifier
 
 data=pd.read_json("c:/code/ct/input/train.json",encoding="utf-8")
