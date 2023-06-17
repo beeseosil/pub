@@ -13,7 +13,7 @@ class wks:
     def open(self,shtname,wksname):
         self.sht=self.gs.open(shtname)
         self.wks=self.sht.worksheet(wksname)
-        print(f"got:: sheet {shtname}:: {wksname}")
+        print("_"*10,f"got:: sheet {shtname}:: {wksname}")
         return None
     def get(self):
         return self.wks.get_all_values()

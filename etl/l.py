@@ -32,7 +32,7 @@ class db:
         __repr=f"connection closed: {self.path}"
         print(__repr)
         return None
-    def loadData(self,filename): # csv나 xls을 데이터로 로드하기
+    def getdata(self,filename): # csv나 xls을 데이터로 로드하기
         if filename.endswith(".csv"):
             __data=pd.read_csv(filename)
         elif filename.endswith((".xlsx",".xls")):
@@ -40,11 +40,11 @@ class db:
         else:
             raise TypeError(f"unsupported filetype: {filename}")
         self.dataname=filename
-        self.data=__data.copy()
+        self.data=__data
         __repr=f"loaded: {filename} of {self.data.shape}"
         print(__repr)
         return None
-    def toTable(self,tablename=None): # 로드된 데이터로 디비에 테이블 쓰기
+    def save(self,tablename=None): # 로드된 데이터로 디비에 테이블 쓰기
         if self.data is None:
             raise IOError(f"data is none")
         if tablename is None:
@@ -57,7 +57,7 @@ class db:
         __repr=f"table initialised: {self.dataname} -> {self.path}:{tablename}"
         print(__repr)
         return None
-    def toDf(self,query): # db 내 테이블을 pd.DataFrame으로 내기
+    def todf(self,query): # db 내 테이블을 pd.DataFrame으로 내기
         return pd.read_sql(query,con=self.connection)
     def queryExec(self,query): # 커셔 쿼리 실행 랩어
         dt=datetime.datetime.now().strftime(datetimeFormat)

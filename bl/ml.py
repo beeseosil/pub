@@ -1,12 +1,12 @@
-import numpy as np
 import pandas as pd
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from imblearn.over_sampling import RandomOverSampler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import BaggingClassifier
 from sklearn.model_selection import RandomizedSearchCV
+from sklearn.metrics import accuracy_score
+from xgboost import XGBClassifier
 
 def _truncate(data,n=3):
     '''Get words from series object for n-th'''
@@ -46,15 +46,21 @@ data=pd.read_csv("c:/code/bl.csv")
 data,obj=_tokenize(data)
 data=_split(data)
 
-from xgboost import XGBClassifier
+# param={
+#     "estimator__learning_rate":[.001,.01,.1,1],
+#     "estimator__reg_alpha":[1e-5, 1e-2, 0.1, 1, 10, 100],
+#     "estimator__reg_lambda":[1e-5, 1e-2, 0.1, 1, 10, 100],
+#     "estimator__tree_method":["gpu_hist"]
+# }
 
-param={
-    "estimator__learning_rate":[.001,.01,.1,1],
-    "estimator__reg_alpha":[1e-5, 1e-2, 0.1, 1, 10, 100],
-    "estimator__reg_lambda":[1e-5, 1e-2, 0.1, 1, 10, 100],
-    "estimator__tree_method":["gpu_hist"]
-}
+{'estimator__tree_method': 'gpu_hist', 'estimator__reg_lambda': 0.1, 'estimator__reg_alpha': 0.1, 'estimator__learning_rate': 1}
+{'estimator__tree_method': 'gpu_hist', 'estimator__reg_lambda': 1e-05, 'estimator__reg_alpha': 1, 'estimator__learning_rate': 1}
+{'estimator__tree_method': 'gpu_hist', 'estimator__reg_lambda': 1, 'estimator__reg_alpha': 0.1, 'estimator__learning_rate': 0.1}
+{'estimator__tree_method': 'gpu_hist', 'estimator__reg_lambda': 10, 'estimator__reg_alpha': 1e-05, 'estimator__learning_rate': 0.1}
 
 model=BaggingClassifier(XGBClassifier())
 cv=RandomizedSearchCV(model,param)
 print('''cv.fit(_todf(data["x"]),data["y"])''')
+rslt=pd.DataFrame(cv.cv_results_).sort_values(["mean_test_score","std_test_score"],ascending=False)
+y__=cv.best_estimator_.predict(data["x_"])
+acc=accuracy_score(data["y_"],y__) # 0.355
