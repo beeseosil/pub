@@ -1,19 +1,10 @@
 import os
 import json
 import datetime
-import numpy as np
 import pandas as pd
 import gspread as gs
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import LabelEncoder
-from imblearn.over_sampling import RandomOverSampler
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import RandomizedSearchCV
-from xgboost import XGBClassifier
-
 datetimeFormat="%y%m%d%H%M%S"
-bitgen=np.random.default_rng(2330)
 
 class wks:
     def __init__(self,key):
@@ -28,6 +19,7 @@ class wks:
         return self.wks.get_all_values()
     def set(self,data):
         return self.wks.update([data.columns.tolist()]+data.values.tolist())
+
 class hx:
     def __init__(self,hxfile="c:/code/blhx.json"):
         self.hxfile=hxfile
@@ -46,25 +38,7 @@ class hx:
         json.dump(self.hx,open(self.hxfile,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
         return None
 
-def _truncate(data,n=3):
-    '''Get words from series object for n-th'''
-    return [q[:n] for q in data]
-
-def _tokenize(data):
-    _x=data[["INPUT","OUTPUT"]]
-    _y=data.RESULT
-
-    lb=LabelEncoder()
-    tfidf=TfidfVectorizer()
-    _y=lb.fit_transform(data.RESULT)
-    _x=data[["INPUT","OUTPUT"]].apply(lambda q:q.str.findall(r"[\w]+"))
-    _x.RESULT=_x.RESULT.apply(_truncate)
-    _x=tfidf.fit_transform(_x)
-    
-    print(lb.classes_)
-
-x,x_,y,y_=train_test_split(_x,_y,random_state=bitgen)
-
+# 
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
 cols=("BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT")
@@ -76,10 +50,10 @@ history=hx()
 
 while True:
     if os.path.exists(datafile):
-        print("found bl.csv")
+        print("-"*10,"found bl.csv")
         prev=pd.read_csv(datafile,encoding="utf-8")
     else:
-        print("failed to locate bl.csv, creating one..")
+        print("-"*10,"failed to locate bl.csv, creating one..")
         prev=pd.DataFrame(bl.get()).drop(0)
         prev.columns=cols
         prev.to_csv(datafile,index=False,encoding="utf-8")
@@ -87,10 +61,10 @@ while True:
     answer=input("read clipboard:: ")
 
     if not answer:
-        print("="*10,"did nothing")
+        print("-"*10,"did nothing")
         break
     if answer in ("reset","set"):
-        print(f"resetting..")
+        print("-"*10,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
     if answer=="y":
@@ -111,7 +85,7 @@ while True:
     this=pd.concat(data)
     print(f"got {this.shape[0]} rows")
 
-    print("processing..")
+    print("-"*10,"processing..")
     this=this.set_axis(cols,axis=1)
     this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
     this.BATCH=this.BATCH.apply(lambda q:BATCH_label[q])
@@ -121,7 +95,7 @@ while True:
     ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True)
     ima.to_csv(datafile,index=None,encoding="utf-8")
 
-    print("writing..")
+    print("-"*10,"writing..")
     response=bl.set(ima)
     response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
     if not history.rowcursor is None:
