@@ -67,6 +67,7 @@ while True:
         print("-"*10,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
+        continue
     if answer=="y":
         data=[]
         while answer=="y":

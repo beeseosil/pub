@@ -46,15 +46,15 @@ data=pd.read_csv("c:/code/bl.csv")
 data,obj=_tokenize(data)
 data=_split(data)
 
-from xgboost import XGBRegressor
+from xgboost import XGBClassifier
 
 param={
-    "learning_rate":[.001,.01,.1,1],
-    "reg_alpha":[1e-5, 1e-2, 0.1, 1, 10, 100],
-    "reg_lambda":[1e-5, 1e-2, 0.1, 1, 10, 100],
-    "tree_method":["gpu_hist"]
+    "estimator__learning_rate":[.001,.01,.1,1],
+    "estimator__reg_alpha":[1e-5, 1e-2, 0.1, 1, 10, 100],
+    "estimator__reg_lambda":[1e-5, 1e-2, 0.1, 1, 10, 100],
+    "estimator__tree_method":["gpu_hist"]
 }
 
-model=BaggingClassifier(XGBRegressor())
+model=BaggingClassifier(XGBClassifier())
 cv=RandomizedSearchCV(model,param)
-cv.fit(_todf(data["x"]),data["y"])
+print('''cv.fit(_todf(data["x"]),data["y"])''')
