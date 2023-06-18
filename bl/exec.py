@@ -93,7 +93,7 @@ while True:
     this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
 
     ima=pd.concat([prev,this]).sort_values("DATE",ascending=False)
-    ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True)
+    ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True,inplace=True)
     ima.to_csv(datafile,index=None,encoding="utf-8")
 
     print("-"*10,"writing..")
