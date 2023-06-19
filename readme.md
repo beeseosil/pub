@@ -1,4 +1,4 @@
-## misc: project-specific scripts
+## Project-specific Scripts
 ### 레포 소개
 * ct
    * [임상시험 데이터셋 (sas7bdat / xport) 구조 톺아보기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
