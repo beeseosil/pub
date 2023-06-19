@@ -2,8 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import secrets
-
-# citation: cafe.naver.com/dmisimportant/
+from sas7bdat import SAS7BDAT as sas7bdat
 
 # variables
 ornament="-"*10
@@ -38,8 +37,8 @@ print(ornament,"domain:",os.linesep,data.keys(),os.linesep,len(data),"domains")
 
 # SN
 def _aname(name,n=2,chars=hangul):
-    surffix="".join([secrets.choice(chars) for q in range(n)])
-    return name[:n]+surffix
+    suffix="".join([secrets.choice(chars) for q in range(n)])
+    return name[:n]+suffix
 
 sn=data["SN"]
 sn_snname_mapper={name:_aname(name) for name in sn.SNNAME.unique()}
@@ -51,7 +50,7 @@ print(ornament,"total subjects:",len(ix))
 dm=data["DM"]
 
 # AE
-ae_=form_crf[form_crf.DOMAIN=="AE"]
+form_crf[form_crf.DOMAIN=="AE"]
 ae=data["AE"]
 
 # VS
@@ -63,6 +62,8 @@ def _get_label(form,var="VARNAME",kvp=["END","LABEL"]):
         kv=form[form[var]==varname].loc[:,kvp].values
         label[varname]={k:v for k,v in kv}
     return label
+
+ae_label=_get_label(form_crf)
 
 lb=data["LB"]
 lb.info()
@@ -76,6 +77,3 @@ def _gen_mockup(desc,ix,count=10):
     data=_gen_mockup_value(desc,count=len(ix)*count)
     ix=pd.MultiIndex.from_product([ix,[q for q in range(1,count+1,1)]],names=["SUBJID","VISIT"])
     return pd.DataFrame(data,ix).reset_index()
-
-mock.merge(dm,on="SUBJID")
-# join은 index-based
