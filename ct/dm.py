@@ -8,6 +8,7 @@ from sas7bdat import SAS7BDAT as sas7bdat
 ornament="-"*10
 hangul="가나다라마바사아자차카파타하"
 ext=(".sas7bdat",".xport")
+path_spec="C:/code/CUBEDEMO2017/spec.xlsx"
 path_crf="C:/code/CUBEDEMO2017/CUBEDEMO_2017_dc_or_fmt.xlsx"
 path_lab="C:/code/CUBEDEMO2017/CUBEDEMO_2017_dc_or_lar.xlsx"
 path_set="C:/code/CUBEDEMO2017/SASSET/"
@@ -77,3 +78,33 @@ def _gen_mockup(desc,ix,count=10):
     data=_gen_mockup_value(desc,count=len(ix)*count)
     ix=pd.MultiIndex.from_product([ix,[q for q in range(1,count+1,1)]],names=["SUBJID","VISIT"])
     return pd.DataFrame(data,ix).reset_index()
+
+spec_usecol=["DOMAIN","PAGE_LABEL","VISIT","ITEMID","ITEM_SEQ","ITEM_LABEL","CODE","TYPE_LENGTH","VIEW_TYPE"]
+spec[spec_usecol]
+
+import json
+spec_dict=json.loads(spec[spec_usecol].set_index("DOMAIN").to_json(orient="records",indent=2))
+
+
+spec=pd.read_excel(path_spec).loc[:,:"VIEW_TYPE"]
+spec["CODE"]=spec.CODE.apply(lambda q:dict(item.split(":") for item in q.split("|")) if pd.notna(q) else q).dropna()
+spec.CODE.sample(10)
+
+
+
+
+
+mh=data["MH"]
+mh.MHONGO
+
+def _label(series,spec):
+    varname=series.name
+    spec=spec[spec.ITEMID==varname]
+    crfname=spec.CRF_LABEL[0]
+    name=spec.ITEM_LABEL[0]
+    code=spec.CODE[0]
+    visit=spec.VISIT[0]
+    return crfname,name,code,visit
+
+mh_MHONGO_spec=_label(mh.MHONGO,spec)
+print(ornament,"\nCRF Name: ",mh_MHONGO_spec[0],"\nForm Label: ",mh_MHONGO_spec[1],"\nCode: ",mh_MHONGO_spec[2])
