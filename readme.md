@@ -2,7 +2,7 @@
 ### 레포 소개
 * ct
    * [임상시험 데이터셋 (sas7bdat / xport) 구조 톺아보기, Mockup 만들기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
-   * [임상시험 데이터셋 DB DB Specification Sheet 보기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
+   * [임상시험 데이터셋 DB Specification Sheet 보기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
 
 * deprecated
     * CSV/JSON 변환, 기정 규칙에 따른 데이터 무결성 확인, 중복/불량 데이터 확인, tabular data 형태 변환 스크립트
