@@ -30,23 +30,6 @@ const 마그=new Brand("걸포동 마스그레이");
 const 투썸=new Brand("걸포동 투썸 플레이스");
 const 산책=new Brand("걸포동 산책");
 var Brands_=Array(트플,스벅,메가,마그,투썸,산책);
-const cafeJsonData = () => {
-    return new Promise( (receive) => {
-        fetch("cafe.json")
-            .then((response) => {
-                if (!response.ok) { throw new Error(`error ${response.status}`); }
-                return response.json();
-            })
-            .then((jsonData) => {
-                fetch_.textContent = "제이슨 로드됨";
-                const latestBrands = init(jsonData);
-                receive(latestBrands);
-            })
-            .catch((error) => {
-                fetch_.textContent = `제이슨 훼칭 실패 ${error}`;
-            });
-    });
-}
 
 /** 함수 모음 **/
 function init(jsonData) {
