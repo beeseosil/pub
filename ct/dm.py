@@ -105,17 +105,4 @@ lb_desc=lb.groupby(["LBTEST"])["LBORRES"].agg(["mean","std"])
 mockup=gen_mockup(lb_desc,ix,count=100)
 print(mockup.sample(10))
 
-# spec_usecol=["DOMAIN","PAGE_LABEL","VISIT","ITEMID","ITEM_SEQ","ITEM_LABEL","CODE","TYPE_LENGTH","VIEW_TYPE"]
-# spec[spec_usecol]
-
-# import json
-# spec_dict=json.loads(spec[spec_usecol].set_index("DOMAIN").to_json(orient="records",indent=2))
-
-# spec=pd.read_excel(path_spec).loc[:,:"VIEW_TYPE"]
-# spec["CODE"]=spec.CODE.apply(lambda q:dict(item.split(":") for item in q.split("|")) if pd.notna(q) else q).dropna()
-# spec.CODE.sample(10)
-
-# mh=data["MH"]
-# mh.MHONGO
 # print(ornament,"\nCRF Name: ",mh_MHONGO_spec[0],"\nForm Label: ",mh_MHONGO_spec[1],"\nCode: ",mh_MHONGO_spec[2])
-
