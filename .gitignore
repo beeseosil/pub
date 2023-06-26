@@ -1,4 +1,6 @@
 #temps
+.ipynb_checkpoints/
+.dep/
 .vscode/
 .DS_Store/
 __pycache__/

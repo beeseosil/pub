@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import pandas as pd
 import secrets
@@ -8,8 +7,6 @@ gen=np.random.default_rng(2330)
 ornament="-"*10
 hangul="가나다라마바사아자차카파타하"
 ext=(".sas7bdat",".xport")
-specpath="C:/code/CUBEDEMO2017/spec.xlsx"
-datapath="C:/code/CUBEDEMO2017/SASSET/"
 
 # methods
 class Spec:
@@ -20,7 +17,7 @@ class Spec:
         self.map=spec.set_index(["DOMAIN","ITEMID"]).T.to_dict()
         return None
 
-def _read_sas(filepath):
+def read_sas_(filepath):
     data=pd.read_sas(filepath)
     nas=data.notna().value_counts().sum()
     bytecol=data.select_dtypes("object").columns
@@ -82,27 +79,3 @@ def gen_mockup(desc,ix,count=10):
 def hide(name,n=2,chars=hangul):
     suffix="".join([secrets.choice(chars) for _ in range(n)])
     return name[:n]+suffix
-
-# executions
-spec=Spec(pd.read_excel(specpath))
-
-sasobj=[obj for obj in os.scandir(datapath) if any(map(obj.path.lower().__contains__,ext)) and obj.is_file()]
-sasbad=[obj for obj in sasobj if obj.stat().st_size<3]
-if len(sasbad)>1:raise Exception("exotic file exists")
-
-data={os.path.splitext(obj.name)[0].upper():_read_sas(obj.path) for obj in sasobj}
-print(ornament,"domain:\n",data.keys(),"\n",len(data),"domains")
-[data[f"{domain}"].to_csv(f"{datapath}{domain}.csv",index=False,encoding="utf-8") for domain in data.keys()]
-
-sn=data["SN"]
-ix=sn.SUBJID.unique()
-sn_snname_map={name:hide(name) for name in ix}
-sn.SNNAME.replace(sn_snname_map,inplace=True)
-print(ornament,"total subjects:",len(ix))
-
-lb=data["LB"]
-lb_desc=lb.groupby(["LBTEST"])["LBORRES"].agg(["mean","std"])
-mockup=gen_mockup(lb_desc,ix,count=100)
-print(mockup.sample(10))
-
-# print(ornament,"\nCRF Name: ",mh_MHONGO_spec[0],"\nForm Label: ",mh_MHONGO_spec[1],"\nCode: ",mh_MHONGO_spec[2])
