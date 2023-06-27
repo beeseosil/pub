@@ -26,3 +26,4 @@ lb=data["LB"]
 lb_desc=lb.groupby(["LBTEST"])["LBORRES"].agg(["mean","std"])
 mockup=gen_mockup(lb_desc,ix,count=100)
 print(mockup.sample(10))
+mockup[lb_desc[pd.isna(lb_desc["std"])].index.tolist()]
