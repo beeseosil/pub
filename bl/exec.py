@@ -4,7 +4,9 @@ import datetime
 import pandas as pd
 import gspread as gs
 
+ornament="-"*10
 datetimeFormat="%y%m%d%H%M%S"
+cols=("BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT")
 
 class wks:
     def __init__(self,key):
@@ -13,10 +15,14 @@ class wks:
     def open(self,shtname,wksname):
         self.sht=self.gs.open(shtname)
         self.wks=self.sht.worksheet(wksname)
-        print("_"*10,f"got:: sheet {shtname}:: {wksname}")
+        print(ornament,f"got {shtname}, {wksname}")
         return None
-    def get(self):
-        return self.wks.get_all_values()
+    def get(self,datafile):
+        print(ornament,"updating datafile unconditionally..")
+        _data=pd.DataFrame(self.wks.get_values()).drop(0)
+        _data.columns=cols
+        _data.to_csv(datafile,index=False,encoding="utf-8")
+        return None
     def set(self,data):
         return self.wks.update([data.columns.tolist()]+data.values.tolist())
 
@@ -30,7 +36,7 @@ class hx:
         except Exception as err:
             self.hx=[]
             self.rowcursor=None
-            print(f"failed to open:: {err}")
+            print(ornament,f"failed to open ({err})")
         return None
     def show(self):
         return pd.DataFrame(self.hx)
@@ -41,7 +47,6 @@ class hx:
 # 
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
-cols=("BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT")
 BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS'}
 
 bl=wks(key)
@@ -50,31 +55,31 @@ history=hx()
 
 while True:
     if os.path.exists(datafile):
-        print("-"*10,"found bl.csv")
+        print(ornament,"found bl.csv")
         prev=pd.read_csv(datafile,encoding="utf-8")
     else:
-        print("-"*10,"failed to locate bl.csv, creating one..")
-        prev=pd.DataFrame(bl.get()).drop(0)
-        prev.columns=cols
-        prev.to_csv(datafile,index=False,encoding="utf-8")
+        print(ornament,"failed to locate bl.csv, creating one..")
+        bl.get(datafile)
 
     answer=input("read clipboard:: ")
 
     if not answer:
-        print("-"*10,"did nothing")
         break
     if answer in ("reset","set"):
-        print("-"*10,"resetting..")
+        print(ornament,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
-    if answer=="y":
+    elif answer=="get":
+        bl.get(datafile)
+        continue
+    elif answer=="y":
         data=[]
         while answer=="y":
             try:
                 this=pd.read_clipboard(header=None,usecols=[0,1,2,3,4,6])
             except Exception as err:
-                print("failed::",err)
+                print(ornament,f"failed ({err})")
                 continue
             else:
                 data.append(this)
@@ -86,7 +91,7 @@ while True:
     this=pd.concat(data)
     print(f"got {this.shape[0]} rows")
 
-    print("-"*10,"processing..")
+    print(ornament,"processing..")
     this=this.set_axis(cols,axis=1)
     this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
     this.BATCH=this.BATCH.apply(lambda q:BATCH_label[q])
@@ -96,7 +101,7 @@ while True:
     ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True,inplace=True)
     ima.to_csv(datafile,index=None,encoding="utf-8")
 
-    print("-"*10,"writing..")
+    print(ornament,"writing..")
     response=bl.set(ima)
     response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
     if not history.rowcursor is None:
