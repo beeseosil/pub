@@ -1,9 +1,11 @@
 ## Project-specific Scripts
 ### 레포 소개
+#### 임상시험 DB 관련
 * ct
    * [임상시험 데이터셋 (sas7bdat) 톺아보기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
    * [임상시험 데이터셋 DB Specification 톺아보기, mapper 내기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
 
+#### 기타
 * deprecated
     * CSV/JSON 변환, 기정 규칙에 따른 데이터 무결성 확인, 중복/불량 데이터 확인, tabular data 형태 변환 스크립트
     * 이미지의 무작위 지점에 무작위 크기의 이미지를 붙인 이미지 생성하는 스크립트
