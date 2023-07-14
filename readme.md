@@ -6,7 +6,7 @@
    * [임상시험 데이터셋 DB Specification 톺아보기, mapper 내기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
 
 * da
-    * [직관적으로 경제 데이터 보기](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
+    * [경제 데이터 보기](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
     * API로 지정한 데이터를 받고, 결합, 업데이트, 보간 등 전처리하는 스크립트
     * 시계열 데이터 확인을 위한 래퍼와 Streamlit 대시보드 스크립트
     * Random Forest Regressor로 ICSA, Corporate Yield Spread로 전월 NFP 계산
