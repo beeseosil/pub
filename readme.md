@@ -5,17 +5,17 @@
    * [임상시험 데이터셋 (sas7bdat) 톺아보기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
    * [임상시험 데이터셋 DB Specification 톺아보기, mapper 내기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
 
-#### 기타
+* da
+    * [직관적으로 경제 데이터 보기](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
+    * API로 지정한 데이터를 받고, 결합, 업데이트, 보간 등 전처리하는 스크립트
+    * 시계열 데이터 확인을 위한 래퍼와 Streamlit 대시보드 스크립트
+    * Random Forest Regressor로 ICSA, Corporate Yield Spread로 전월 NFP 계산
+
 * deprecated
     * CSV/JSON 변환, 기정 규칙에 따른 데이터 무결성 확인, 중복/불량 데이터 확인, tabular data 형태 변환 스크립트
     * 이미지의 무작위 지점에 무작위 크기의 이미지를 붙인 이미지 생성하는 스크립트
     * 화면 구간을 지속적으로 캡처하고 캡처 내 텍스트를 추출/저장하는 스크립트
     * 멀티트레딩 사용 blob 스크래퍼
-
-* da
-    * API로 지정한 데이터를 받고, 결합, 업데이트, 보간 등 전처리하는 스크립트
-    * 시계열 데이터 확인을 위한 래퍼와 Stremlit 대시보드 스크립트
-    * Random Forest Regressor로 ICSA, Corporate Yield Spread로 전월 NFP 계산
 
 * etl
     * SQL (sqlite3) 연습용 스크립트
