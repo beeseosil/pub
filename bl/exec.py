@@ -24,7 +24,7 @@ class wks:
         _data.to_csv(datafile,index=False,encoding="utf-8")
         return None
     def set(self,data):
-        return self.wks.update([data.columns.tolist()]+data.values.tolist())
+        return self.wks.update(value=[data.columns.tolist()]+data.values.tolist())
 
 class hx:
     def __init__(self,hxfile="c:/code/blhx.json"):

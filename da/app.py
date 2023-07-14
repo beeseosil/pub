@@ -134,17 +134,17 @@ with t1:
             value=f"{data_vals.iat[-1,2]*100:.2f}%",
             delta=None,delta_color="off")
     # row 2
-    # st.subheader("Rolled Standard Deviation")
-    # st.markdown("x일 변화율 평균의 표준편차의 1,2 표준점수(σ). BSM (60)")
-    # dur=st.slider(
-    #     "Duration (days)",
-    #     min_value=5,
-    #     max_value=200,
-    #     value=60,
-    #     step=5,)
-    # cols=["cl","ng","si","hg","zs"]
-    # for q in enumerate(cols):
-    #     st.pyplot(roll_pct(f,q[1],dur=dur,figsize=(8,4),title=f"{cols_nm[q[0]]}"))
+    st.subheader("Rolled Standard Deviation")
+    st.markdown("x일 변화율 평균의 표준편차의 1,2 표준점수(σ). BSM (60)")
+    dur=st.slider(
+        "Duration (days)",
+        min_value=5,
+        max_value=200,
+        value=60,
+        step=5,)
+    cols=["cl","ng","si","hg","zs"]
+    for q in enumerate(cols):
+        st.pyplot(roll_pct(f,q[1],dur=dur,figsize=(8,4),title=f"{cols_nm[q[0]]}"))
 with t2:
     # params
     examplars=[("cb","fs"),("cb","ic"),("cl","ie"),("ng","fert")]

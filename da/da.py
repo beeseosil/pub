@@ -14,12 +14,11 @@ from sklearn.impute import KNNImputer
 
 
 rnd=np.random.RandomState(0)
-
 pd.options.mode.copy_on_write = True
-
 pd.options.display.max_rows=6
 pd.options.display.max_columns=4
 pd.options.display.precision=5
+plt.rcParams['figure.figsize']=[12,5]
 sns.set_theme(style="whitegrid",palette="bright",font="monospace")
 
 
@@ -43,7 +42,8 @@ intern={
 "ur":"UNRATE",
 "adp":"ADPMNUSNERSA",
 "cci":"CPILFESL",
-"ie":"T5YIE"
+"ie":"T5YIE",
+"djia":"DJIA"
 }
 extern={
 "zs":"ZS=F",
