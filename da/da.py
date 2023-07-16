@@ -43,7 +43,9 @@ intern={
 "adp":"ADPMNUSNERSA",
 "cci":"CPILFESL",
 "ie":"T5YIE",
-"djia":"DJIA"
+"djia":"DJIA",
+"rs":"RSXFS",
+"gdp":"GDPC1"
 }
 extern={
 "zs":"ZS=F",
