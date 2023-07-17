@@ -27,4 +27,4 @@
 
 ### 향후 계획
 * Free-form text 등 유의미한 단어 나열을 기정 딕셔너리 등에 따라 분류하기
-* SDTM, ADAM 구조 알고 XML 다루기
+* CDASH - SDTM - ADaM
