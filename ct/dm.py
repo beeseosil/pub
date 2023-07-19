@@ -13,7 +13,7 @@ class Spec:
     def __init__(self,specfile):
         spec=specfile.dropna(how="all",axis=1)
         spec["CODE"]=[dict(q.split(":") for q in w.split("|")) if isinstance(w,str) else w for w in spec.CODE]
-        self.data=spec.copy()
+        self.data=spec
         self.map=spec.set_index(["DOMAIN","ITEMID"]).T.to_dict()
         return None
 
