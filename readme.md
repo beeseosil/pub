@@ -1,8 +1,9 @@
 ## Project-specific Scripts
 ### 레포 소개
 * ct
-   * [임상시험 데이터셋 (sas7bdat) 톺아보기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
-   * [임상시험 데이터셋 DB Specification 톺아보기, mapper 내기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
+   * [임상시험 데이터셋 sas7bdat 보기](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
+   * [임상시험 데이터셋 DB Specification 보기, mapper 내기](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
+   * [임상시험 데이터셋 SDTM 기반 후처리](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
 
 * da
     * [경제 데이터 보기](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
