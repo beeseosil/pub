@@ -7,7 +7,6 @@
 
 * da
     * [경제 데이터 보기](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
-    * API로 지정한 데이터를 받고, 결합, 업데이트, 보간 등 전처리하는 스크립트
 
 * bl
     * 붙여넣기한 데이터를 특정 형태의 tabular data로 구글 스프레드시트에 업데이트하는 스크립트
