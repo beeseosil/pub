@@ -9,10 +9,11 @@
 
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
-        * API를 경유해 정형 데이터를 획득, 업데이트, 저장, 전후처리 및 EDA를 수행하고, XGBoost를 이용해 주요 지표의 예측값 계산
+        * API를 경유해 정형 데이터를 획득, 업데이트, 저장하고 기본 전후처리 수행
+        * EDA 수행 및 XGBoost를 이용해 주요 지표의 예측값 계산
 
 * etl
-    * SQL(sqlite3) 연습용 스크립트
+    * SQL(sqlite3) 연습을 도와주는 스크립트
     * 프로젝트 참여자 회계용 스프레드시트 전처리 스크립트
 
 * bl
