@@ -17,13 +17,4 @@ print(ornament,"domain:\n",data.keys(),len(data),"domains")
 [data[f"{domain}"].to_csv(f"{datapath}{domain}.csv",index=False,encoding="utf-8") for domain in data.keys()]
 
 sn=data["SN"]
-sn_snname_map={name:hide(name) for name in sn.SNNAME.unique()}
-sn.SNNAME.replace(sn_snname_map,inplace=True)
-ix=sn.SUBJID.unique()
-print(ornament,"total subjects:",len(ix))
-
 lb=data["LB"]
-lb_desc=lb.groupby(["LBTEST"])["LBORRES"].agg(["mean","std"])
-mockup=gen_mockup(lb_desc,ix,count=100)
-print(mockup.sample(10))
-mockup[lb_desc[pd.isna(lb_desc["std"])].index.tolist()]
