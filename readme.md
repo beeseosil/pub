@@ -1,19 +1,21 @@
-### 레포지토리 소개
+#### 임상시험 관련
 * ct
+   * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
+        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing, Clinical Manual Querying 수행
    * [임상시험 데이터셋 확인 1](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
-        * cubeCDMS의 데모 데이터셋(sas7bdat)을 바탕으로 CDMS의 CRF 구조를 확인하고, 모의 LB 데이터 생성
+        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 CDMS의 CRF 구조를 확인하고, 모의 LB 데이터 생성
    * [임상시험 데이터셋 확인 2](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
         * 상기 데이터셋에 대해 SDTM 매핑 테이블을 데이터 스펙 클래스로 이용해 CRF의 속성 확인 및 기초적인 edit check 진행
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
-        * 데모 데이터셋의 LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리 진행
+        * LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리 진행
 
+#### 기타
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
         * API 경유, 정형 데이터를 획득하고 업데이트 및 저장, 관련 전후처리 수행
         * EDA 수행 및 XGBoost를 이용해 주요 지표의 예측값 계산
-
 * etl
-    * SQL(sqlite3) 연습을 도와주는 스크립트
+    * SQL(sqlite3) 연습용 스크립트
     * 프로젝트 참여자 회계용 스프레드시트 전처리 스크립트
 
 * bl
@@ -26,5 +28,5 @@
     * 화면 구간을 지속적으로 캡처하고 캡처 내 텍스트를 추출/저장하는 스크립트
     * 멀티트레딩 사용 blob 스크래퍼
 
-### 향후 계획
+#### 향후 계획
 * MedDRA, WHODRUG(ATC) 등 명사 나열형 데이터를 auto-encoding하기
