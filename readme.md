@@ -1,9 +1,9 @@
 #### 임상시험 관련
 * ct
    * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
-        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing, Clinical Manual Querying 수행
+        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing 및 Clinical Manual Querying 수행
    * [임상시험 데이터셋 확인 1](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
-        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 CDMS의 CRF 구조를 확인하고, 모의 LB 데이터 생성
+        * 상기 데이터셋에 대해 CDMS의 CRF 구조를 확인하고, 모의 LB 데이터 생성
    * [임상시험 데이터셋 확인 2](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
         * 상기 데이터셋에 대해 SDTM 매핑 테이블을 데이터 스펙 클래스로 이용해 CRF의 속성 확인 및 기초적인 edit check 진행
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
