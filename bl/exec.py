@@ -24,7 +24,7 @@ class wks:
         _data.to_csv(datafile,index=False,encoding="utf-8")
         return None
     def set(self,data):
-        return self.wks.update(value=[data.columns.tolist()]+data.values.tolist())
+        return self.wks.update([data.columns.tolist()]+data.values.tolist())
 
 class hx:
     def __init__(self,hxfile="c:/code/blhx.json"):
@@ -47,10 +47,10 @@ class hx:
 # 
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
-BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS'}
+BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS','Search - App Store': 'AAS'}
 
 bl=wks(key)
-bl.open("ap_daily","bl")
+bl.open("daily","bl")
 history=hx()
 
 while True:
