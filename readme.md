@@ -1,13 +1,13 @@
-#### 임상시험 데이터 관련
+#### 임상 데이터 관련
 * ct
    * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
-        * cubeCDMS 데모 데이터셋(sas7bdat)을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing 및 Clinical Manual Querying 수행
+        * cubeCDMS 데모 sas7bdat을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing 및 Clinical Manual Querying
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
-        * LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리 진행
+        * LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리
    * [임상시험 데이터셋 확인 2](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
-        * SDTM 매핑 테이블을 데이터 스펙 클래스로 이용해 CRF의 속성 확인 및 edit check 진행
+        * SDTM 매핑 테이블을 데이터 스펙 클래스로 두고 CRF의 속성 확인 및 edit check
    * [임상시험 데이터셋 확인 1](https://github.com/yuninze/pub/blob/main/ct/dm.ipynb)
-        * CDMS의 CRF 구조를 확인하고, 모의 LB 데이터 생성
+        * CRF Item 구조를 확인하고 모의 LB 데이터 생성
 
 #### 기타
 * da
@@ -28,5 +28,6 @@
     * 화면 구간을 지속적으로 캡처하고 캡처 내 텍스트를 추출/저장하는 스크립트
     * 멀티트레딩 사용 blob 스크래퍼
 
-#### 향후 계획
-* MedDRA, WHODRUG(ATC) 등 명사 나열형 데이터 auto-encoding
+#### 계획
+* [React:Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
+* MedDRA, WHODRUG:ATC 등 나열 명사들의 auto-encoding
