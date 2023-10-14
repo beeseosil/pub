@@ -12,8 +12,8 @@
 #### 기타
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
-        * API 경유, 정형 데이터를 획득하고 업데이트 및 저장, 관련 전후처리 수행
-        * EDA 수행 및 K-Folding Ridge로 주요 지표의 예측값 산출
+        * API로 정형 데이터를 획득, 업데이트, 저장 및 수반 전후처리 수행
+        * EDA 수행, K-Folding Ridge로 주요 지표의 예측값 산출
 * etl
     * SQL(sqlite3) 연습용 스크립트
     * 프로젝트 참여자 회계용 스프레드시트 전처리 스크립트
