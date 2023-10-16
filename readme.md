@@ -1,5 +1,8 @@
 #### 임상 데이터 관련
-* ct
+   * [CYP-GUIDES](https://github.com/yuninze/pub/blob/main/notebook44f7ceb7b9.ipynb)
+     * MDD 관련 약물과 days-to-readmission가 endpoint인 시험의 데이터셋 전처리 시범
+   * [PD Dataset](https://github.com/yuninze/pub/blob/main/notebook9846d2c254.ipynb)
+     * 파킨슨병 관련 임상 parameter과 UPDRS가 endpoint인 시험의 데이터셋 전처리 시범
    * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
         * cubeCDMS 데모 sas7bdat을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing 및 Clinical Manual Querying
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
