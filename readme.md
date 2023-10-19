@@ -34,5 +34,6 @@
     * 멀티트레딩 사용 blob 스크래퍼
 
 #### 계획
-* [React:Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
-* MedDRA, WHODRUG:ATC 등 나열 명사들의 auto-encoding
+* [Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
+  * [dev build](http://114.204.56.226:11118)
+* MedDRA, WHODRUG:ATC 등 나열 명사 auto-encoding
