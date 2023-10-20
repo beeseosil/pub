@@ -15,6 +15,8 @@
         * CRF Item 구조를 확인하고 모의 LB 데이터 생성
 
 #### 기타
+* [Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
+    * [dev build](http://114.204.56.226:11118)
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
         * API로 정형 데이터를 획득, 업데이트, 저장 및 수반 전후처리 수행
@@ -34,6 +36,4 @@
     * 멀티트레딩 사용 blob 스크래퍼
 
 #### 계획
-* [Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
-  * [dev build](http://114.204.56.226:11118)
 * MedDRA, WHODRUG:ATC 등 나열 명사 auto-encoding
