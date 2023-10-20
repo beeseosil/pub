@@ -16,7 +16,7 @@
 
 #### 기타
 * [Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
-    * [dev build](http://114.204.56.226:11118)
+    * [dev build (visit-able)](http://114.204.56.226:11118)
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
         * API로 정형 데이터를 획득, 업데이트, 저장 및 수반 전후처리 수행
