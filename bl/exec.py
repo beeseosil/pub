@@ -46,11 +46,6 @@ class hx:
 
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
-BATCH_label={
-    'Search - App Store v2': 'AAS',
-    'Search - Mac App Store': 'MAS',
-    'Search - App Store': 'AAS'
-}
 
 bl=wks(key)
 bl.open("daily","bl")
@@ -97,7 +92,11 @@ while True:
     print(ornament,"processing..")
     this=this.set_axis(cols,axis=1)
     this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
-    this.BATCH=this.BATCH.apply(lambda q:BATCH_label[q])
+    
+    thisBatchMacLattice=this.BATCH.str.contains("Mac")
+    this.BATCH[thisBatchMacLattice]="MAS"
+    this.BATCH[~thisBatchMacLattice]="AAS"
+    
     this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
 
     ima=pd.concat([prev,this]).sort_values("DATE",ascending=False)
