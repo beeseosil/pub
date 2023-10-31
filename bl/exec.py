@@ -44,10 +44,13 @@ class hx:
         json.dump(self.hx,open(self.hxfile,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
         return None
 
-# 
 key="c:/code/blkey.json"
 datafile="c:/code/bl.csv"
-BATCH_label={'Search - App Store v2': 'AAS','Search - Mac App Store': 'MAS','Search - App Store': 'AAS'}
+BATCH_label={
+    'Search - App Store v2': 'AAS',
+    'Search - Mac App Store': 'MAS',
+    'Search - App Store': 'AAS'
+}
 
 bl=wks(key)
 bl.open("daily","bl")
