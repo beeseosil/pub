@@ -6,7 +6,7 @@
    * [UC Irvine Parkinson's Disease](https://github.com/yuninze/pub/blob/main/notebook9846d2c254.ipynb)
      * 파킨슨병 관련 parameters과 UPDRS가 endpoint인 데이터셋 전처리
    * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
-        * cubeCDMS 데모 sas7bdat을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE Reconciliation Listing 및 Clinical Manual Querying
+        * 상용 CDMS 데모 데이터셋을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE reconciliation listing 및 Clinical Manual Querying
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
         * LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리
    * [임상시험 데이터셋 확인 2](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
