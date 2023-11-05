@@ -1,4 +1,4 @@
-#### 임상 데이터 관련
+#### 데이터 관련
    * [Wisconsin Breast Cancer](https://github.com/yuninze/pub/blob/main/notebook82dfb5c7b4.ipynb)
      * 유방 신생조직의 physical parameters가 endpoint인 데이터셋 전처리 전처리 시범
    * [CYP-GUIDES](https://github.com/yuninze/pub/blob/main/notebook44f7ceb7b9.ipynb)
