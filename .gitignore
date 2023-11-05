@@ -1,5 +1,6 @@
 #temps
 .ipynb_checkpoints/
+ct/.ipynb_checkpoints/
 .dep/
 .vscode/
 .DS_Store/
