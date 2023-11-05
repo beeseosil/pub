@@ -6,7 +6,7 @@
    * [UC Irvine Parkinson's Disease](https://github.com/yuninze/pub/blob/main/notebook9846d2c254.ipynb)
      * 파킨슨병 관련 longitudinal parameters과 UPDRS가 endpoint인 데이터셋 전처리 시범
    * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
-        * 상용 CDMS 데모 데이터셋을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE reconciliation listing 및 Clinical Manual Querying
+        * 상용 CDMS의 데이터셋을 바탕으로 py2sas(saspy), SAS, SQL을 통해 SAE listing 및 Clinical Querying
    * [임상시험 데이터셋 확인 3](https://github.com/yuninze/pub/blob/main/ct/dmb.ipynb)
         * LB 등 일부 도메인을 SDTM-like로 바꾸는 후처리
    * [임상시험 데이터셋 확인 2](https://github.com/yuninze/pub/blob/main/ct/dma.ipynb)
@@ -15,8 +15,6 @@
         * CRF Item 구조를 확인하고 모의 LB 데이터 생성
 
 #### 기타
-* [Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
-    * [dev build (visit-able)](http://114.204.56.226:11118)
 * da
     * [경제 데이터 확인](https://github.com/yuninze/pub/blob/main/da/fin.ipynb)
         * API로 정형 데이터를 획득, 업데이트, 저장 및 수반 전후처리 수행
@@ -36,4 +34,5 @@
     * 멀티트레딩 사용 blob 스크래퍼
 
 #### 계획
+* [React, Next.js 공부](https://github.com/yuninze/yeonsup/tree/master/web/nxtjs)
 * MedDRA, WHODRUG:ATC 등 나열 명사 auto-encoding
