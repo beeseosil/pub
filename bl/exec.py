@@ -78,9 +78,9 @@ while True:
                 this=pd.read_clipboard(header=None,usecols=[0,1,2,3,4,6])
             except Exception as err:
                 print(ornament,f"failed ({err})")
-                continue
             else:
                 data.append(this)
+            finally:
                 answer=input("continue:: ")
                 if answer=="y":
                     continue
