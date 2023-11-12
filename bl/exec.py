@@ -51,46 +51,51 @@ bl=wks(key)
 bl.open("daily","bl")
 history=hx()
 
-while True:
-    if os.path.exists(datafile):
-        print(ornament,"found bl.csv")
-        prev=pd.read_csv(datafile,encoding="utf-8")
-    else:
-        print(ornament,"failed to locate bl.csv, creating one..")
-        bl.get(datafile)
+successive=False
 
-    answer=input("read clipboard:: ")
+while True:
+    if not successive:
+        if os.path.exists(datafile):
+            print(ornament,"found bl.csv")
+            prev=pd.read_csv(datafile,encoding="utf-8")
+        else:
+            print(ornament,"failed to locate bl.csv, creating one..")
+            bl.get(datafile)
+
+    answer=input("read clipboard: ")
 
     if not answer:
         break
+
     if answer in ("reset","set"):
         print(ornament,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
-    elif answer=="get":
+    elif answer.lower()=="get":
         bl.get(datafile)
         continue
-    elif answer=="y":
+    elif answer in ("y","Y"):
         data=[]
-        while answer=="y":
+        while answer in ("y","Y"):
             try:
-                this=pd.read_clipboard(header=None,usecols=[0,1,2,3,4,6])
+                this=pd.read_clipboard(header=None,usecols=(0,1,2,3,4,6))
             except Exception as err:
-                print(ornament,f"failed ({err})")
+                print(ornament,f"{err}")
             else:
                 data.append(this)
             finally:
-                answer=input("continue:: ")
-                if answer=="y":
+                answer=input("continue: ")
+                if answer in ("y","Y"):
                     continue
                 break
     
     this=pd.concat(data)
-    print(f"got {this.shape[0]} rows")
+    print(f"is {this.shape[0]} rows")
 
     print(ornament,"processing..")
     this=this.set_axis(cols,axis=1)
+
     this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
     
     thisBatchMacLattice=this.BATCH.str.contains("Mac")
@@ -99,17 +104,22 @@ while True:
     
     this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
 
-    ima=pd.concat([prev,this]).sort_values("DATE",ascending=False)
-    ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True,inplace=True)
+    ima=pd.concat([prev,this])
+    ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True).sort_values("DATE",ascending=False)
     ima.to_csv(datafile,index=None,encoding="utf-8")
 
     print(ornament,"writing..")
     response=bl.set(ima)
     response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
+
     if not history.rowcursor is None:
         history.hx.append(response)
     else:
         history.hx=[response]
     history.save()
+
+    del ima
+    
+    successive=True
 
     continue
