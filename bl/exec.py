@@ -1,3 +1,6 @@
+import warnings
+warnings.simplefilter("ignore", UserWarning)
+
 import os
 import json
 import datetime
@@ -62,22 +65,22 @@ while True:
             print(ornament,"failed to locate bl.csv, creating one..")
             bl.get(datafile)
 
-    answer=input("read clipboard: ")
+    successive=True
+    answer=input("read clipboard: ").lower()
 
     if not answer:
         break
-
-    if answer in ("reset","set"):
+    elif answer in ("reset","set"):
         print(ornament,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
-    elif answer.lower()=="get":
+    elif answer=="get":
         bl.get(datafile)
         continue
-    elif answer in ("y","Y"):
+    elif answer=="y":
         data=[]
-        while answer in ("y","Y"):
+        while answer=="y":
             try:
                 this=pd.read_clipboard(header=None,usecols=(0,1,2,3,4,6))
             except Exception as err:
@@ -85,13 +88,16 @@ while True:
             else:
                 data.append(this)
             finally:
-                answer=input("continue: ")
-                if answer in ("y","Y"):
+                answer=input("continue: ").lower()
+                if answer=="y":
                     continue
                 break
+    else:
+        print(ornament,f"no such method '{answer}'")
+        continue
     
     this=pd.concat(data)
-    print(f"is {this.shape[0]} rows")
+    print(f"{ornament} got {this.shape[0]} rows")
 
     print(ornament,"processing..")
     this=this.set_axis(cols,axis=1)
@@ -117,9 +123,5 @@ while True:
     else:
         history.hx=[response]
     history.save()
-
-    del ima
-    
-    successive=True
 
     continue
