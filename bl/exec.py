@@ -65,7 +65,6 @@ while True:
             print(ornament,"failed to locate bl.csv, creating one..")
             bl.get(datafile)
 
-    successive=True
     answer=input("read clipboard: ").lower()
 
     if not answer:
