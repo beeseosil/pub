@@ -59,7 +59,6 @@ successive=False
 while True:
     if not successive:
         if os.path.exists(datafile):
-            print(ornament,"found bl.csv")
             prev=pd.read_csv(datafile,encoding="utf-8")
         else:
             print(ornament,"failed to locate bl.csv, creating one..")
@@ -98,7 +97,6 @@ while True:
     this=pd.concat(data)
     print(f"{ornament} got {this.shape[0]} rows")
 
-    print(ornament,"processing..")
     this=this.set_axis(cols,axis=1)
 
     this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
@@ -112,6 +110,8 @@ while True:
     ima=pd.concat([prev,this])
     ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True).sort_values("DATE",ascending=False)
     ima.to_csv(datafile,index=None,encoding="utf-8")
+
+    print(ima.DATE.value_counts(sort=False)[:5])
 
     print(ornament,"writing..")
     response=bl.set(ima)
