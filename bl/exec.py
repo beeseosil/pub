@@ -1,11 +1,11 @@
-import warnings
-warnings.simplefilter("ignore", UserWarning)
-
 import os
 import json
 import datetime
 import pandas as pd
 import gspread as gs
+
+import warnings
+warnings.simplefilter("ignore", UserWarning)
 
 ornament="-"*10
 datetimeFormat="%y%m%d%H%M%S"
@@ -54,8 +54,8 @@ bl=wks(key)
 bl.open("daily","bl")
 history=hx()
 
-successive=False
 data=[]
+successive=False
 
 while True:
 
@@ -125,8 +125,16 @@ while True:
         else:
             history.hx=[response]
         history.save()
+        
         del data
+        data=[]
+        
         continue
+
+    elif answer=="exit":
+        if len(data)==0:
+            print(ornament,"Did nothing.")
+        break
 
     else:
         print(ornament,f"No such method '{answer}'")
