@@ -55,72 +55,79 @@ bl.open("daily","bl")
 history=hx()
 
 successive=False
+data=[]
 
 while True:
+
     if not successive:
         if os.path.exists(datafile):
             prev=pd.read_csv(datafile,encoding="utf-8")
         else:
             print(ornament,"failed to locate bl.csv, creating one..")
             bl.get(datafile)
+        successive=True
 
     answer=input("read clipboard: ").lower()
 
     if not answer:
         break
+
     elif answer in ("reset","set"):
         print(ornament,"resetting..")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
+
     elif answer=="get":
         bl.get(datafile)
+        successive=False
         continue
+
     elif answer=="y":
-        data=[]
-        while answer=="y":
-            try:
-                this=pd.read_clipboard(header=None,usecols=(0,1,2,3,4,6))
-            except Exception as err:
-                print(ornament,f"{err}")
-            else:
-                data.append(this)
-            finally:
-                answer=input("continue: ").lower()
-                if answer=="y":
-                    continue
-                break
-    else:
-        print(ornament,f"no such method '{answer}'")
+        try:
+            this=pd.read_clipboard(header=None,usecols=(0,1,2,3,4,6))
+        except Exception as err:
+            print(ornament,f"{err}")
+        else:
+            data.append(this)
+        finally:
+            continue
+
+    elif answer=="go":
+        if len(data)==0:
+            continue
+
+        this=pd.concat(data)
+        print(f"{ornament} got {this.shape[0]} rows")
+
+        this=this.set_axis(cols,axis=1)
+
+        this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
+
+        thisBatchMacLattice=this.BATCH.str.contains("Mac")
+        this.BATCH[thisBatchMacLattice]="MAS"
+        this.BATCH[~thisBatchMacLattice]="AAS"
+
+        this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
+
+        ima=pd.concat([prev,this])
+        ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True).sort_values("DATE",ascending=False)
+        ima.to_csv(datafile,index=None,encoding="utf-8")
+
+        print(ima.DATE.value_counts(sort=False)[:5])
+
+        print(ornament,"writing..")
+        response=bl.set(ima)
+        response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
+
+        if not history.rowcursor is None:
+            history.hx.append(response)
+        else:
+            history.hx=[response]
+        history.save()
+        del data
         continue
-    
-    this=pd.concat(data)
-    print(f"{ornament} got {this.shape[0]} rows")
 
-    this=this.set_axis(cols,axis=1)
-
-    this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
-    
-    thisBatchMacLattice=this.BATCH.str.contains("Mac")
-    this.BATCH[thisBatchMacLattice]="MAS"
-    this.BATCH[~thisBatchMacLattice]="AAS"
-    
-    this.OUTPUT=this.OUTPUT.str.replace("<br>"," ")
-
-    ima=pd.concat([prev,this])
-    ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True).sort_values("DATE",ascending=False)
-    ima.to_csv(datafile,index=None,encoding="utf-8")
-
-    print(ima.DATE.value_counts(sort=False)[:5])
-
-    print(ornament,"writing..")
-    response=bl.set(ima)
-    response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
-
-    if not history.rowcursor is None:
-        history.hx.append(response)
     else:
-        history.hx=[response]
-    history.save()
-
-    continue
+        print(ornament,f"No such method '{answer}'")
+        continue

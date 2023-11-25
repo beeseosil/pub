@@ -14,9 +14,6 @@ from sklearn.impute import KNNImputer
 
 
 rnd=np.random.RandomState(0)
-pd.options.mode.copy_on_write = True
-pd.options.display.max_rows=6
-pd.options.display.max_columns=4
 pd.options.display.precision=5
 plt.rcParams['figure.figsize']=[12,5]
 sns.set_theme(style="whitegrid",palette="bright",font="monospace")
@@ -37,8 +34,9 @@ intern={
 "nk":"NIKKEI225",
 "fert":"PCU325311325311",
 "iy":"DFII10",
-"us10y":"DGS10",
 "us02y":"DGS2",
+"us10y":"DGS10",
+"us30y":"DGS30",
 "ur":"UNRATE",
 "adp":"ADPMNUSNERSA",
 "cci":"CPILFESL",
@@ -105,8 +103,6 @@ def rtn_(ticker:str,f:pd.DataFrame,days:int=20)->float:
     rtn=round((f[ticker].dropna().pct_change()*100)[-1*days:].std(),2)
     print(rtn,"%")
     return rtn
-# sp[(sp.pct_change()*100).round(2)>= 1*sp_]["2023"]
-# sp[(sp.pct_change()*100).round(2)<=-1*sp_]["2023"]
 
 
 def apnd(path:str)->pd.DataFrame:
@@ -154,8 +150,8 @@ def getdata(days_visit=100,save=False):
         f.to_csv("c:/code/f.csv")
         return f
     else:
-        ask=input("input to save above::")
-        if ask in ["y","Y"]:
+        ask=input("input to save above: ")
+        if ask in ("y","Y"):
             f.to_csv("c:/code/f.csv")
     
     return f
