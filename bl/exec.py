@@ -67,10 +67,10 @@ while True:
             bl.get(datafile)
         successive=True
 
-    answer=input("read clipboard: ").lower()
+    answer=input("read clipboard: ").strip().lower()
 
     if not answer:
-        break
+        continue
 
     elif answer in ("reset","set"):
         print(ornament,"resetting..")
