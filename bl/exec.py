@@ -15,17 +15,20 @@ class wks:
     def __init__(self,key):
         self.key=key
         self.gs=gs.service_account(self.key)
+    
     def open(self,shtname,wksname):
         self.sht=self.gs.open(shtname)
         self.wks=self.sht.worksheet(wksname)
         print(ornament,f"got {shtname}, {wksname}")
         return None
+    
     def get(self,datafile):
         print(ornament,"updating datafile unconditionally..")
         _data=pd.DataFrame(self.wks.get_values()).drop(0)
         _data.columns=cols
         _data.to_csv(datafile,index=False,encoding="utf-8")
         return None
+    
     def set(self,data):
         return self.wks.update([data.columns.tolist()]+data.values.tolist())
 
@@ -41,8 +44,10 @@ class hx:
             self.rowcursor=None
             print(ornament,f"failed to open ({err})")
         return None
+    
     def show(self):
         return pd.DataFrame(self.hx)
+    
     def save(self):
         json.dump(self.hx,open(self.hxfile,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
         return None
@@ -58,7 +63,6 @@ data=[]
 successive=False
 
 while True:
-
     if not successive:
         if os.path.exists(datafile):
             prev=pd.read_csv(datafile,encoding="utf-8")
