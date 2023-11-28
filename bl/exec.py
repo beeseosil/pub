@@ -99,12 +99,10 @@ while True:
 
     elif answer=="go":
         if len(data)==0:
+            print(ornament,"Zero-length data")
             continue
 
-        this=pd.concat(data)
-        print(f"{ornament} got {this.shape[0]} rows")
-
-        this=this.set_axis(cols,axis=1)
+        this=pd.concat(data).set_axis(cols,axis=1)
 
         this.DATE=pd.to_datetime(this.DATE.apply(lambda q:q[:8]),format="%m/%d/%y").astype("str")
 
