@@ -7,7 +7,7 @@ import gspread as gs
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 
-ornament="-"*10
+ornament=". . ."
 datetimeFormat="%y%m%d%H%M%S"
 cols=("BATCH","LOCALE","INPUT","OUTPUT","DATE","RESULT")
 
@@ -23,7 +23,7 @@ class wks:
         return None
     
     def get(self,datafile):
-        print(ornament,"updating datafile unconditionally..")
+        print(ornament,"updating datafile unconditionally")
         _data=pd.DataFrame(self.wks.get_values()).drop(0)
         _data.columns=cols
         _data.to_csv(datafile,index=False,encoding="utf-8")
@@ -67,7 +67,7 @@ while True:
         if os.path.exists(datafile):
             prev=pd.read_csv(datafile,encoding="utf-8")
         else:
-            print(ornament,"failed to locate bl.csv, creating one..")
+            print(ornament,"failed to locate bl.csv, creating")
             bl.get(datafile)
         successive=True
 
@@ -76,8 +76,8 @@ while True:
     if not answer:
         continue
 
-    elif answer in ("reset","set"):
-        print(ornament,"resetting..")
+    elif answer in ("reset"):
+        print(ornament,"resetting")
         bl.wks.resize(prev.shape[0],prev.shape[1])
         bl.set(prev)
         continue
@@ -116,12 +116,12 @@ while True:
         ima=ima.drop_duplicates(["BATCH","DATE","INPUT","OUTPUT"],keep="first",ignore_index=True).sort_values("DATE",ascending=False)
         ima.to_csv(datafile,index=None,encoding="utf-8")
 
-        print(ima.DATE.value_counts(sort=False)[:5])
+        print(ima.DATE.value_counts(sort=False)[:5].to_string())
 
-        print(ornament,"writing..")
+        print(ornament,"writing")
         response=bl.set(ima)
+        
         response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
-
         if not history.rowcursor is None:
             history.hx.append(response)
         else:
@@ -130,13 +130,15 @@ while True:
         
         del data
         data=[]
-        
+        successive=False
         continue
 
     elif answer=="exit":
         if len(data)==0:
-            print(ornament,"Did nothing.")
-        break
+            print(ornament,"Did nothing")
+            break
+        print(ornament,"There's unloaded data")
+        continue
 
     else:
         print(ornament,f"No such method '{answer}'")
