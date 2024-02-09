@@ -1,24 +1,16 @@
-#temps
+# temp
+*.pyc
+*.pyo
+*.log
+*.db
 .ipynb_checkpoints/
-ct/.ipynb_checkpoints/
 .dep/
 .vscode/
 .DS_Store/
 __pycache__/
-*.pyc
-*.pyo
-*.log
 
-#mines
-*.png
-*.jpg
-*.jpeg
-*.bmp
-*.db
-*.ttf
-*.csv
-
-#credentials
+# credential
+*.key
 key
 id
 id.json
