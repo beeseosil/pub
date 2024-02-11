@@ -121,16 +121,15 @@ def exec():
             print(ima.DATE.value_counts(sort=False)[:5].to_string())
 
             print(ornament,"writing")
-            response=bl.set(ima)
+            # response=bl.set(ima)
             
-            response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
-            if not history.rowcursor is None:
-                history.hx.append(response)
-            else:
-                history.hx=[response]
-            history.save()
+            # response["datetime"]=datetime.datetime.now().strftime(datetimeFormat)
+            # if not history.rowcursor is None:
+            #     history.hx.append(response)
+            # else:
+            #     history.hx=[response]
+            # history.save()
             
-            del data
             data=[]
             successive=False
             continue
