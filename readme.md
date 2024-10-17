@@ -2,6 +2,9 @@
 * [Clinical Manual Query](https://github.com/yuninze/pub/blob/main/ct/dmc.ipynb)
 	* 상용 임상시험 데이터 입력 플랫폼(CDMS) 데이터셋을 saspy, SAS, SQL로 전처리, SAE listing 및 clinical context을 고려한 querying
 
+* [Dataset for an Educational Purpose](https://github.com/beeseosil/nih.go.kr/koges/blob/main/qwer.ipynb)
+	* This notebook demonstrates a exhaustive preprocessing and analysis on the deidentificated dataset with high-level healthcare topics
+
 * [Trial 175](https://github.com/yuninze/pub/blob/main/notebook4407d644ef.ipynb)
 	* Assuming time-to-event based on baseline data including regimens, prior symptoms, and CD4 / CD8 cell count
 
