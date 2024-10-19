@@ -1,4 +1,4 @@
-#### 임상의학 데이터셋 관련 노트북
+#### 노트북 소개
 * [Clinical Manual Query](https://github.com/beeseosil/pub/blob/main/ct/dmc.ipynb)
 	* 자원 소모가 큰 규제산업 특성상, 상용 임상시험 데이터 입력 플랫폼(CDMS) 솔루션은 최소한의 입력 폼(CRF) 구성에도 정형 데이터 테이블을 동시적으로 여러 개 다룬다. 이 노트북은 이러한 테이블 데이터셋(SAS)을 보고, SQL, saspy로 전처리하며, SAE listing 및 clinical context을 고려해 querying 하는 것을 보인다.
 
