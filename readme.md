@@ -1,6 +1,6 @@
 #### 노트북 소개
 * [Clinical Manual Query](https://github.com/beeseosil/pub/blob/main/ct/dmc.ipynb)
-	* 규제산업 특성상, 상용 임상시험 데이터(CDMS) 솔루션은 최소 구성에도 정형 데이터(테이블)을 여러 개 포함합니다. 이 노트북은 관련 데이터셋(SAS)을 SQL, saspy로 전처리하며, AE(이상반응) listing 및 clinical context을 고려해 querying 하는 것을 보입니다.
+	* 규제산업 특성상, 상용 임상시험 데이터(CDMS) 솔루션은 최소 구성에도 정형 데이터(테이블)을 여러 개 포함합니다(참고: [dmb.ipynb](https://github.com/beeseosil/pub/blob/main/ct/dmb.ipynb)). 이 노트북은 관련 데이터셋(SAS)을 SQL, saspy로 전처리하며, AE(이상반응) listing 및 clinical context을 고려해 querying 하는 것을 보입니다.
 
 * [Trial 175](https://github.com/beeseosil/pub/blob/main/notebook4407d644ef.ipynb)
 	* 노트북에서 다루고 있는 데이터셋은 저명한 antiretroviral 임상시험의 실제 결과로, 레지멘에 대한 사전지식 없이 ToE(잔여기간)를 산출하는 과정을 보입니다.
