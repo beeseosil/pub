@@ -1,4 +1,4 @@
-#### 노트북 소개
+## 레포지토리 소개
 * [Clinical Manual Query](https://github.com/beeseosil/pub/blob/main/ct/dmc.ipynb)
 	* 규제산업 특성상, 상용 임상시험 데이터(CDMS) 솔루션은 최소 구성에도 정형 데이터(테이블)을 여러 개 포함합니다(참고: [dmb.ipynb](https://github.com/beeseosil/pub/blob/main/ct/dmb.ipynb)). 이 노트북은 관련 데이터셋(SAS)을 SQL, saspy로 전처리하며, AE(이상반응) listing 및 clinical context을 고려해 querying 하는 것을 보입니다.
 
