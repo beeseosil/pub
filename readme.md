@@ -17,6 +17,6 @@
 * [UC Irvine Parkinson's Disease](https://github.com/beeseosil/pub/blob/main/notebook9846d2c254.ipynb)
 	* 파킨슨병 관련 longitudinal parameters과 UPDRS가 endpoint인 데이터셋 전처리를 통해 선형회귀의 유용성을 보입니다.
 
-* [A South Korean Dataset for an Educational Purpose][(https://github.com/beeseosil/nih.go.kr/koges/blob/main/qwer.ipynb](https://github.com/beeseosil/nih.go.kr/blob/q/koges/qwer.ipynb))
+* [A South Korean Dataset for an Educational Purpose][(https://github.com/beeseosil/nih.go.kr/koges/blob/main/qwer.ipynb](https://github.com/beeseosil/nih.go.kr/blob/q/koges/qwer.ipynb)
 	* This notebook demonstrates a exhaustive preprocessing and analysis on an deidentificated dataset with high-level healthcare topics (e.g. drink history) without disregarding any columns, or using an external app.
  
