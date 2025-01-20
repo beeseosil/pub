@@ -1,6 +1,6 @@
 ## 레포지토리 소개
-* [Clinical Manual Query](https://github.com/beeseosil/pub/blob/main/ct/dmc.ipynb)
-	* 규제산업 특성상, 상용 임상시험 데이터(CDMS) 솔루션은 최소 구성에도 정형 데이터(테이블)을 여러 개 포함합니다(참고: [dmb.ipynb](https://github.com/beeseosil/pub/blob/main/ct/dmb.ipynb)). 이 노트북은 관련 데이터셋(SAS)을 SQL, saspy로 전처리하며, AE(이상반응) listing 및 clinical context을 고려해 querying 하는 것을 보입니다.
+* [Analysis on App Reviews](https://github.com/beeseosil/bicpy/blob/q/bicpy/_case_lang.ipynb)
+	* 다루고 있는 데이터셋은 Google Play Store(GPS)의 어떤 앱의 리뷰 스크랩으로, 앱 리뷰 레이팅의 시간대(hourly)~연간(yearly) 타임프레임 별 리뷰 개수와 별점 경향을 보입니다.
 
 * [Trial 175](https://github.com/beeseosil/pub/blob/main/notebook4407d644ef.ipynb)
 	* 노트북에서 다루고 있는 데이터셋은 저명한 antiretroviral 임상시험의 실제 결과로, 레지멘에 대한 사전지식 없이 ToE(잔여기간)를 산출하는 과정을 보입니다.
@@ -16,3 +16,6 @@
 
 * [UC Irvine Parkinson's Disease](https://github.com/beeseosil/pub/blob/main/notebook9846d2c254.ipynb)
 	* 파킨슨병 관련 longitudinal parameters과 UPDRS가 endpoint인 데이터셋 전처리를 통해 선형회귀의 유용성을 보입니다.
+
+* [Clinical Manual Query](https://github.com/beeseosil/pub/blob/main/ct/dmc.ipynb)
+	* 규제산업 특성상, 상용 임상시험 데이터(CDMS) 솔루션은 최소 구성에도 정형 데이터(테이블)을 여러 개 포함합니다(참고: [dmb.ipynb](https://github.com/beeseosil/pub/blob/main/ct/dmb.ipynb)). 이 노트북은 관련 데이터셋(SAS)을 SQL, saspy로 전처리하며, AE(이상반응) listing 및 clinical context을 고려해 querying 하는 것을 보입니다.
